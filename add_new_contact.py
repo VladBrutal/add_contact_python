@@ -17,8 +17,7 @@ class HW13(unittest.TestCase):
         wd = self.wd
         self.open_addressbook_page(wd)
         self.login_to_the_page(wd)
-        self.add_new_contact(wd)
-        self.fill_form_new_contact(wd)
+        self.add_new_contacts(wd)
         self.move_back_home_page(wd)
         self.logout_from_page(wd)
 
@@ -28,7 +27,9 @@ class HW13(unittest.TestCase):
     def move_back_home_page(self, wd):
         wd.find_element_by_link_text("home").click()
 
-    def fill_form_new_contact(self, wd):
+    def add_new_contacts(self, wd):
+        # add new contact
+        wd.find_element_by_link_text("add new").click()
         # fill the form of new contact
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -61,10 +62,9 @@ class HW13(unittest.TestCase):
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys("Staples Center")
+        # submit group creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
-    def add_new_contact(self, wd):
-        wd.find_element_by_link_text("add new").click()
 
     def login_to_the_page(self, wd):
         wd.find_element_by_name("user").click()
