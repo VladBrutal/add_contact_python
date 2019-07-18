@@ -13,12 +13,23 @@ class HW13(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     
-    def test_h_w13(self):
+    def test_add_contact(self):
         wd = self.wd
         self.open_addressbook_page(wd)
-        self.login_to_the_page(wd, "admin", "secret")
-        self.add_new_contacts(wd, "Anthony", "Marshon", "Davis", "The Brow", "Los Angeles Lakers", "Staples Center",
-                              "+1234567890", "ad@lakers.com", "lakers.com", "Staples Center")
+        self.login_to_the_page(wd, username="admin", password="secret")
+        self.add_new_contacts(wd, firstname="Anthony", middlename="Marshon", lastname="Davis", nickname="The Brow"
+                              , company="Los Angeles Lakers", address="Staples Center",
+                              phone_home="+1234567890", email="ad@lakers.com", homepage="lakers.com", address2="Staples Center")
+        self.move_back_home_page(wd)
+        self.logout_from_page(wd)
+
+    def test_add_contact_empty_value(self):
+        wd = self.wd
+        self.open_addressbook_page(wd)
+        self.login_to_the_page(wd, username="admin", password="secret")
+        self.add_new_contacts(wd, firstname="", middlename="", lastname="", nickname=""
+                              , company="", address="",
+                              phone_home="", email="", homepage="", address2="")
         self.move_back_home_page(wd)
         self.logout_from_page(wd)
 
