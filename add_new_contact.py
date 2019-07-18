@@ -16,8 +16,9 @@ class HW13(unittest.TestCase):
     def test_h_w13(self):
         wd = self.wd
         self.open_addressbook_page(wd)
-        self.login_to_the_page(wd)
-        self.add_new_contacts(wd)
+        self.login_to_the_page(wd, "admin", "secret")
+        self.add_new_contacts(wd, "Anthony", "Marshon", "Davis", "The Brow", "Los Angeles Lakers", "Staples Center",
+                              "+1234567890", "ad@lakers.com", "lakers.com", "Staples Center")
         self.move_back_home_page(wd)
         self.logout_from_page(wd)
 
@@ -27,9 +28,8 @@ class HW13(unittest.TestCase):
     def move_back_home_page(self, wd):
         wd.find_element_by_link_text("home").click()
 
-    def add_new_contacts(self, wd, firstname="Anthony", middlename="Marshon", lastname="Davis", nickname="The Brow",
-                         company="Los Angeles Lakers", address="Staples Center", phone_home="+1234567890",
-                         email="ad@lakers.com", homepage="lakers.com", address2="Staples Center"):
+    def add_new_contacts(self, wd, firstname, middlename, lastname, nickname, company, address, phone_home, email,
+                         homepage, address2):
         # add new contact
         wd.find_element_by_link_text("add new").click()
         # fill the form of new contact
@@ -68,7 +68,7 @@ class HW13(unittest.TestCase):
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
 
-    def login_to_the_page(self, wd, username="admin", password="secret"):
+    def login_to_the_page(self, wd, username, password):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
